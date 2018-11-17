@@ -1,14 +1,16 @@
 package ch.wiss.nineHoles;
 
-public class Player {
+public abstract class Player {
 
-	private Integer numPieces = 0;
+	Board board;
+	char piece;
 	
-	public void nextDrop() {
-		
+	Player(Board board, char piece) {
+		this.board = board;
+		this.piece = piece;
 	}
 	
-	public void nextMove() {
-		
-	}
+	abstract public void nextDrop();
+	
+	abstract public void nextMove();
 }
