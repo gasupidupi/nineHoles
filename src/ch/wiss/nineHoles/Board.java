@@ -17,8 +17,6 @@ public class Board {
 			}
 		} else if (amountPieces < 6) {
 			return State.DROP;
-		} else {
-			return State.MOVE;
 		}
 		return State.DRAW;
 	}
@@ -53,7 +51,7 @@ public class Board {
 	 */
 
 	public boolean setPiece(int y, int x, char piece) {
-		if (y<3 && y>-1 && x<3 && x>-1 && field[y][x] == EMPTY) {
+		if (y<3 && x<3 && field[y][x] == EMPTY) {
 			field[y][x] = piece;
 			amountPieces++;
 			lastPiece = piece;
@@ -61,53 +59,6 @@ public class Board {
 		} else {
 			return false;
 		}
-	}
-	
-	public boolean moveRight(int y, int x, char piece) {
-
-		if (y<3 && y>-1 && x+1<3 && x+1>-1 && field[y][x+1] == EMPTY) {
-			field[y][x+1] = piece;
-			field[y][x] = EMPTY;
-			lastPiece = piece;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean moveUp(int y, int x, char piece) {
-		if (y-1<3 && y-1>-1 && x<3 && x>-1 && field[y-1][x] == EMPTY) {
-			field[y-1][x] = piece;
-			field[y][x] = EMPTY;
-			lastPiece = piece;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean moveLeft(int y, int x, char piece) {
-		if (y<3 && y>-1 && x-1<3 && x-1>-1 && field[y][x-1] == EMPTY) {
-			field[y][x-1] = piece;
-			field[y][x] = EMPTY;
-			lastPiece = piece;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean moveDown(int y, int x, char piece) {
-
-		if (y+1<3 && y+1>-1 && x<3 && x>-1 && field[y+1][x] == EMPTY) {
-			field[y+1][x] = piece;
-			field[y][x] = EMPTY;
-			lastPiece = piece;
-			return true;
-		} else {
-			return false;
-		}
-
 	}
 
 	public void display() {

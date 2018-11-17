@@ -20,16 +20,7 @@ public class Controller {
 			} else {
 				currentPlayer = player1;
 			}
-		}
-		
-		while (board.getState() == State.MOVE) {
-			currentPlayer.nextMove();
-			board.display();
-			if (currentPlayer != player2) {
-				currentPlayer = player2;
-			} else {
-				currentPlayer = player1;
-			}
+			
 		}
 
 	}
