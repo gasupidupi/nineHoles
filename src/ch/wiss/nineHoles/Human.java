@@ -16,7 +16,7 @@ public class Human extends Player{
 		int y = ConsoleReader.readInteger(String.format("Player %c Y-Pos?", piece));
 		int x = ConsoleReader.readInteger(String.format("Player %c X-Pos?", piece));
 		if(!board.setPiece(y, x, piece)) {
-			System.out.println("##################ERROR:OCCUPIED##################");
+			System.out.println("##################ERROR:OCCUPIED OR NOT ON BOARD##################");
 			nextDrop();
 		}
 	}

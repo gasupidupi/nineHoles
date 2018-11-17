@@ -51,7 +51,7 @@ public class Board {
 	 */
 
 	public boolean setPiece(int y, int x, char piece) {
-		if (field[y][x] == EMPTY) {
+		if (y<3 && x<3 && field[y][x] == EMPTY) {
 			field[y][x] = piece;
 			amountPieces++;
 			lastPiece = piece;
