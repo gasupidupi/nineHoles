@@ -1,5 +1,6 @@
 package ch.wiss.nineHoles;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomPlayer extends Player {
@@ -24,7 +25,7 @@ public class RandomPlayer extends Player {
 		 * piece)) { nextDrop(); }
 		 */
 		System.out.println(">> AI is picking a position.");
-		int randomFieldNumber = randomNumberInRange(0, board.getAvailableFields().size() + 1);
+		int randomFieldNumber = randomNumberInRange(0, board.getAvailableFields().size());
 		int[] randomField = board.getAvailableFields().get(randomFieldNumber);
 		if (!board.setPiece(randomField[0], randomField[1], piece)) {
 			nextDrop();
@@ -33,13 +34,26 @@ public class RandomPlayer extends Player {
 
 	public void nextMove() {
 		
-		System.out.println(">> AI is picking a position.");
-		int randomFieldNumber = randomNumberInRange(0, board.getAvailableFields().size() + 1);
-		int[] randomField = board.getAvailableFields().get(randomFieldNumber);
-		if (!board.setPiece(randomField[0], randomField[1], piece)) {
-			nextDrop();
-		}
+		System.out.println(">> AI is picking a Move.");
 		
+		ArrayList<Move> moves = board.getAvailableMoves(piece);
+		
+		int randomMoveId = randomNumberInRange(0,moves.size());
+		Move randomMove = moves.get(randomMoveId);
+		switch(randomMove.direction) {
+		case 'u':
+			board.moveUp(randomMove.y, randomMove.x, piece);
+			break;
+		case 'd':
+			board.moveDown(randomMove.y, randomMove.x, piece);
+			break;
+		case 'r':
+			board.moveRight(randomMove.y, randomMove.x, piece);
+			break;
+		case 'l':
+			board.moveLeft(randomMove.y, randomMove.x, piece);
+			break;
+		}
 		/*
 		 * int randomDirection = randomNumberInRange(1,4);
 		 * 

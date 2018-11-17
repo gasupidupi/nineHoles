@@ -14,7 +14,7 @@ public class Controller {
 
 		Board board = new Board();
 
-		Player player1 = new Human(board, Board.PIECE_X);
+		Player player1 = new RandomPlayer(board, Board.PIECE_X);
 		Player player2 = new RandomPlayer(board, Board.PIECE_O);
 
 		Player currentPlayer = player1;
