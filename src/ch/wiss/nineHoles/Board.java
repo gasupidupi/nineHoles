@@ -1,5 +1,7 @@
 package ch.wiss.nineHoles;
 
+import java.util.ArrayList;
+
 public class Board {
 	static final char PIECE_X = 'X';
 	static final char PIECE_O = 'O';
@@ -7,6 +9,8 @@ public class Board {
 	private char[][] field = new char[3][3];
 	private int amountPieces = 0;
 	private char lastPiece;
+	String line = "-------------------------------------------------------";
+
 
 	public State getState() {
 		if (isARowComplete() || isAColComplete()) {
@@ -65,7 +69,7 @@ public class Board {
 	
 	public boolean moveRight(int y, int x, char piece) {
 
-		if (y<3 && y>-1 && x+1<3 && x+1>-1 && isFieldEmpty(y,x+1) && field[y][x] != lastPiece ) {
+		if (y<3 && y>-1 && x+1<3 && x+1>-1 && isFieldEmpty(y,x+1) && field[y][x] != lastPiece && !isFieldEmpty(y,x)) {
 			field[y][x+1] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
@@ -79,7 +83,7 @@ public class Board {
 		if(!isFieldEmpty(y-1,x)) {
 			return false;
 		}
-		if (y-1<3 && y-1>-1 && x<3 && x>-1  && isFieldEmpty(y-1,x) && field[y][x] != lastPiece) {
+		if (y-1<3 && y-1>-1 && x<3 && x>-1  && isFieldEmpty(y-1,x) && field[y][x] != lastPiece && !isFieldEmpty(y,x)) {
 			field[y-1][x] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
@@ -90,7 +94,7 @@ public class Board {
 	}
 	
 	public boolean moveLeft(int y, int x, char piece) {
-		if (y<3 && y>-1 && x-1<3 && x-1>-1 && isFieldEmpty(y,x-1) && field[y][x] != lastPiece) {
+		if (y<3 && y>-1 && x-1<3 && x-1>-1 && isFieldEmpty(y,x-1) && field[y][x] != lastPiece && !isFieldEmpty(y,x)) {
 			field[y][x-1] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
@@ -102,7 +106,7 @@ public class Board {
 	
 	public boolean moveDown(int y, int x, char piece) {
 
-		if (y+1<3 && y+1>-1 && x<3 && x>-1 && isFieldEmpty(y+1,x) && field[y][x] != lastPiece) {
+		if (y+1<3 && y+1>-1 && x<3 && x>-1 && isFieldEmpty(y+1,x) && field[y][x] != lastPiece && !isFieldEmpty(y,x)) {
 			field[y+1][x] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
@@ -116,18 +120,52 @@ public class Board {
 	public boolean isFieldEmpty(int y, int x) {
 		return field[y][x] == EMPTY;
 	}
-
-	public void display() {
+	
+	public ArrayList<int[]> getAvailableFields() {
+		ArrayList<int[]> availableFields = new ArrayList<int[]>();
 		for (int y = 0; y < field.length; y++) {
 			for (int x = 0; x < field[y].length; x++) {
-				if (field[y][x] == EMPTY) {
-					System.out.print('-');
-				} else {
-					System.out.print(field[y][x]);
+				if (isFieldEmpty(y,x)) {
+					availableFields.add(new int[]{y,x});
 				}
+			}
+		}
+		
+		return availableFields;	
+	}
 
+
+	public void display() {
+		System.out.println(line);
+		for(int i = 0; i < 3; i++) {
+			if(i<1) {
+			System.out.print("  ");
+			}else {
+			System.out.print("   ");
+			}
+			System.out.print(i);
+		}
+		System.out.print(" < x");
+		System.out.println("");
+		for (int y = 0; y < field.length; y++) {
+			System.out.print(y);
+			for (int x = 0; x < field[y].length; x++) {
+				if (field[y][x] == EMPTY) {
+					System.out.print("( )");
+				} else {
+					System.out.print("(");
+					System.out.print(field[y][x]);
+					System.out.print(")");
+				}
+				if(x<2) {
+					System.out.print("-");
+				}
 			}
 			System.out.print("\n");
 		}
+		System.out.println("^");
+		System.out.println("y");
+		System.out.println(line);
 	}
+	
 }

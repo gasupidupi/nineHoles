@@ -2,10 +2,10 @@ package ch.wiss.nineHoles;
 
 public class Human extends Player {
 
-	private String errorMsg = "##################ERROR:OCCUPIED/NOT ON BOARD/INCORRECT PIECE##################";
-	private String yPosMsg = String.format("Player %c Y-Pos?", piece);
-	private String xPosMsg = String.format("Player %c X-Pos?", piece);
-	private String directionMsg = "Which direction(u,d,r,l)? ";
+	private String errorMsg = "------------------------INVALID------------------------";
+	private String yPosMsg = String.format(">> Player %c y-Pos", piece);
+	private String xPosMsg = String.format(">> Player %c x-Pos", piece);
+	private String directionMsg = "Pick direction(u,d,r,l)";
 	private String direction;
 	private int x;
 	private int y;
