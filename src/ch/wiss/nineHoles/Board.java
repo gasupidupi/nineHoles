@@ -65,7 +65,7 @@ public class Board {
 	
 	public boolean moveRight(int y, int x, char piece) {
 
-		if (y<3 && y>-1 && x+1<3 && x+1>-1 && field[y][x+1] == EMPTY) {
+		if (y<3 && y>-1 && x+1<3 && x+1>-1 && isFieldEmpty(y,x+1) && field[y][x] != lastPiece ) {
 			field[y][x+1] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
@@ -76,7 +76,10 @@ public class Board {
 	}
 	
 	public boolean moveUp(int y, int x, char piece) {
-		if (y-1<3 && y-1>-1 && x<3 && x>-1 && field[y-1][x] == EMPTY) {
+		if(!isFieldEmpty(y-1,x)) {
+			return false;
+		}
+		if (y-1<3 && y-1>-1 && x<3 && x>-1  && isFieldEmpty(y-1,x) && field[y][x] != lastPiece) {
 			field[y-1][x] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
@@ -87,7 +90,7 @@ public class Board {
 	}
 	
 	public boolean moveLeft(int y, int x, char piece) {
-		if (y<3 && y>-1 && x-1<3 && x-1>-1 && field[y][x-1] == EMPTY) {
+		if (y<3 && y>-1 && x-1<3 && x-1>-1 && isFieldEmpty(y,x-1) && field[y][x] != lastPiece) {
 			field[y][x-1] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
@@ -99,7 +102,7 @@ public class Board {
 	
 	public boolean moveDown(int y, int x, char piece) {
 
-		if (y+1<3 && y+1>-1 && x<3 && x>-1 && field[y+1][x] == EMPTY) {
+		if (y+1<3 && y+1>-1 && x<3 && x>-1 && isFieldEmpty(y+1,x) && field[y][x] != lastPiece) {
 			field[y+1][x] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
@@ -108,6 +111,10 @@ public class Board {
 			return false;
 		}
 
+	}
+	
+	public boolean isFieldEmpty(int y, int x) {
+		return field[y][x] == EMPTY;
 	}
 
 	public void display() {
