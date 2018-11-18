@@ -79,10 +79,10 @@ public class AI extends Player{
 		return moveratings;
 	}
 	
-	private int[] bestMove(int[] moveRatings, List<Move> possibleMoves) {
+	private Move bestMove(int[] moveRatings, List<Move> possibleMoves) {
 		int highestIndex = indexOfMax(moveRatings);
 		Move bestMove = possibleMoves.get(highestIndex);  
-		return moveRatings;
+		return bestMove;
 		
 	}
 	
@@ -109,6 +109,24 @@ public class AI extends Player{
 	@Override
 	public void nextMove() {
 		// TODO Auto-generated method stub
+		Board testBoard = board.getCopy();
+		List<Move> possibleMoves = testBoard.getAvailableMoves(piece);
+		int[] Moveratings = moveRatings(possibleMoves, testBoard);
+		Move bestMove = bestMove(Moveratings, possibleMoves);
+		switch(bestMove.direction) {
+		case 'u':
+			board.moveUp(bestMove.y, bestMove.x, piece);
+			break;
+		case 'd':
+			board.moveDown(bestMove.y, bestMove.x, piece);
+			break;
+		case 'r':
+			board.moveRight(bestMove.y, bestMove.x, piece);
+			break;
+		case 'l':
+			board.moveLeft(bestMove.y, bestMove.x, piece);
+			break;
+		}
 		
 	}
 	
