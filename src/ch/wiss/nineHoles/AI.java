@@ -17,31 +17,31 @@ public class AI extends Player{
 
 			Board testBoard = board.getCopy();
 			List<int[]> emptyPos = testBoard.getAvailableFields();
-			int[] ratings = ratings(emptyPos, testBoard);
-			int[] bestPos = bestPos(ratings, emptyPos);
+			int[] dropRatings = dropRatings(emptyPos, testBoard);
+			int[] bestPos = bestPos(dropRatings, emptyPos);
 			board.setPiece(bestPos[0], bestPos[1], piece);
 			
 	}
 	
-	private int[] ratings(List<int[]> emptyPos, Board testBoard) {
-		 int[] ratings = new int[emptyPos.size()];
+	private int[] dropRatings(List<int[]> emptyPos, Board testBoard) {
+		 int[] dropRatings = new int[emptyPos.size()];
 			
 			for(int i = 0; i<emptyPos.size(); i++){
 				Board testInputBoard = board.getCopy();
 				testInputBoard.setPiece(emptyPos.get(i)[0], emptyPos.get(i)[1], piece);
 				if(piece == Board.PIECE_O && testInputBoard.getState() == State.O_WON || piece == Board.PIECE_X && testInputBoard.getState() == State.X_WON){
-					ratings[i] = 2;
+					dropRatings[i] = 2;
 				}
 				if(opponent == Board.PIECE_O && testInputBoard.getState() == State.O_WON || opponent == Board.PIECE_X && testInputBoard.getState() == State.X_WON) {
-					ratings[i] = 1;
+					dropRatings[i] = 1;
 				}
 				else {
-					ratings[i] = 0;
+					dropRatings[i] = 0;
 				}
 			
 			}
 		
-		return ratings;
+		return dropRatings;
 	}
 	
 	private int[] moveRatings(List<Move> possibleMoves, Board testBoard) {
