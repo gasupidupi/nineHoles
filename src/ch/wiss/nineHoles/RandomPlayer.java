@@ -12,7 +12,7 @@ public class RandomPlayer extends Player {
 	}
 
 	// importiert
-	private int randomNumberInRange(int min, int max) {
+	public static int randomNumberInRange(int min, int max) {
 		if (min >= max) {
 			throw new IllegalArgumentException("max must be greater than min");
 		}
