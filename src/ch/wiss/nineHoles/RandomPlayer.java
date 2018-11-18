@@ -1,6 +1,7 @@
 package ch.wiss.nineHoles;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomPlayer extends Player {
@@ -36,7 +37,7 @@ public class RandomPlayer extends Player {
 		
 		System.out.println(">> AI is picking a Move.");
 		
-		ArrayList<Move> moves = board.getAvailableMoves(piece);
+		List<Move> moves = board.getAvailableMoves(piece);
 		
 		int randomMoveId = randomNumberInRange(0,moves.size());
 		Move randomMove = moves.get(randomMoveId);

@@ -1,16 +1,37 @@
 package ch.wiss.nineHoles;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 	static final char PIECE_X = 'X';
 	static final char PIECE_O = 'O';
 	static final char EMPTY = '\u0000';
-	private char[][] field = new char[3][3];
+	private char[][] field  = new char[3][3];
 	private int amountPieces = 0;
 	private char lastPiece;
 	String line = "-------------------------------------------------------";
+	
+	public Board() {
+		
+	}
+	
+	private Board(char[][] field, int amountPieces, char lastPiece) {
+		this.field = field;
+		this.lastPiece = lastPiece;
+		this.amountPieces = amountPieces;
+	}
 
+	public Board getCopy() {
+		char[][] fieldCopy = new char[3][3];
+		for (int y = 0; y < field.length; y++) {
+			for (int x = 0; x < field[y].length; x++) {
+				fieldCopy[y][x] = field[y][x];
+			}
+		}
+		return new Board(fieldCopy, amountPieces, lastPiece);
+	}
+	
 	public State getState() {
 		if (isARowComplete() || isAColComplete()) {
 			if (lastPiece == PIECE_X) {
@@ -137,8 +158,8 @@ public class Board {
 		return false;
 	}
 
-	public ArrayList<int[]> getAvailableFields() {
-		ArrayList<int[]> availableFields = new ArrayList<int[]>();
+	public List<int[]> getAvailableFields() {
+		List<int[]> availableFields = new ArrayList<int[]>();
 		for (int y = 0; y < field.length; y++) {
 			for (int x = 0; x < field[y].length; x++) {
 				if (isFieldEmpty(y, x)) {
@@ -150,8 +171,8 @@ public class Board {
 		return availableFields;
 	}
 
-	public ArrayList<Move> getAvailableMoves(char piece) {
-		ArrayList<Move> availableMoves = new ArrayList<Move>();
+	public List<Move> getAvailableMoves(char piece) {
+		List<Move> availableMoves = new ArrayList<Move>();
 		for (int y = 0; y < field.length; y++) {
 			for (int x = 0; x < field[y].length; x++) {
 				if (field[y][x] == piece) {

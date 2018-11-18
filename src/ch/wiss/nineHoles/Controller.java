@@ -12,10 +12,11 @@ public class Controller {
 				"   /_/     |_|  |_|  \\____/  |______| |______| |_____/ \r\n" + 
 				"";
 
+
 		Board board = new Board();
 
 		Player player1 = new RandomPlayer(board, Board.PIECE_X);
-		Player player2 = new RandomPlayer(board, Board.PIECE_O);
+		Player player2 = new AI(board, Board.PIECE_O);
 
 		Player currentPlayer = player1;
 		
@@ -28,8 +29,10 @@ public class Controller {
 			board.display();
 			if (currentPlayer != player2) {
 				currentPlayer = player2;
+
 			} else {
 				currentPlayer = player1;
+
 			}
 		}
 		
@@ -52,5 +55,7 @@ public class Controller {
 		}
 
 	}
+
+
 
 }
