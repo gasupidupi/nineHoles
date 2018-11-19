@@ -13,7 +13,7 @@ public class AI extends Player {
 	@Override
 	public void nextDrop() {
 		// TODO Auto-generated method stub
-
+		System.out.println(">> AI is picking a position.");
 		Board testBoard = board.getCopy();
 		List<int[]> emptyPos = testBoard.getAvailableFields();
 		int[] dropRatings = dropRatings(emptyPos, testBoard);
@@ -122,6 +122,7 @@ public class AI extends Player {
 	@Override
 	public void nextMove() {
 		// TODO Auto-generated method stub
+		System.out.println(">> AI is picking a Move.");
 		Board testBoard = board.getCopy();
 		List<Move> possibleMoves = testBoard.getAvailableMoves(piece);
 		int[] Moveratings = moveRatings(possibleMoves, testBoard);

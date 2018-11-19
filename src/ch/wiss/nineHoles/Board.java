@@ -11,6 +11,7 @@ public class Board {
 	private int amountPieces = 0;
 	private char lastPiece;
 	String line = "-------------------------------------------------------";
+	private int roundsCount = 0;
 	
 	public Board() {
 		
@@ -33,6 +34,9 @@ public class Board {
 	}
 	
 	public State getState() {
+		if (roundsCount > 100) {
+		return State.DRAW;
+		}
 		if (isARowComplete() || isAColComplete()) {
 			if (lastPiece == PIECE_X) {
 				return State.X_WON;
@@ -44,6 +48,7 @@ public class Board {
 		} else {
 			return State.MOVE;
 		}
+
 		return State.DRAW;
 	}
 
@@ -94,6 +99,7 @@ public class Board {
 			field[y][x + 1] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
+			roundsCount++;
 			return true;
 		} else {
 			return false;
@@ -109,6 +115,7 @@ public class Board {
 			field[y - 1][x] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
+			roundsCount++;
 			return true;
 		} else {
 			return false;
@@ -121,6 +128,7 @@ public class Board {
 			field[y][x - 1] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
+			roundsCount++;
 			return true;
 		} else {
 			return false;
@@ -134,6 +142,7 @@ public class Board {
 			field[y + 1][x] = piece;
 			field[y][x] = EMPTY;
 			lastPiece = piece;
+			roundsCount++;
 			return true;
 		} else {
 			return false;
