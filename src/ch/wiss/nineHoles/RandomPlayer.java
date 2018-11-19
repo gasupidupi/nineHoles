@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class RandomPlayer extends Player {
 
+	/**
+	 * RandomPlayer Class
+	 * This class extends the player class and uses randomness to place pieces.
+	 */
 	RandomPlayer(Board board, char piece) {
 		super(board, piece);
 		// TODO Auto-generated constructor stub
@@ -41,6 +45,9 @@ public class RandomPlayer extends Player {
 		
 		int randomMoveId = randomNumberInRange(0,moves.size());
 		Move randomMove = moves.get(randomMoveId);
+		/**
+		 * This switch checks the random move randomMove and moves in that direction.
+		 */
 		switch(randomMove.direction) {
 		case 'u':
 			board.moveUp(randomMove.y, randomMove.x, piece);
@@ -55,17 +62,6 @@ public class RandomPlayer extends Player {
 			board.moveLeft(randomMove.y, randomMove.x, piece);
 			break;
 		}
-		/*
-		 * int randomDirection = randomNumberInRange(1,4);
-		 * 
-		 * switch(randomDirection) { case 1: if
-		 * (!board.moveRight(randomNumberInRange(0,3), randomNumberInRange(0,3), piece))
-		 * { nextMove(); break; } case 2: if (!board.moveDown(randomNumberInRange(0,3),
-		 * randomNumberInRange(0,3), piece)) { nextMove(); break; } case 3: if
-		 * (!board.moveLeft(randomNumberInRange(0,3), randomNumberInRange(0,3), piece))
-		 * { nextMove(); break; } case 4: if (!board.moveUp(randomNumberInRange(0,3),
-		 * randomNumberInRange(0,3), piece)) { nextMove(); break; } }
-		 */
 
 	}
 }

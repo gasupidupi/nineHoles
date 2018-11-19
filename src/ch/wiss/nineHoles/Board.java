@@ -17,12 +17,23 @@ public class Board {
 		
 	}
 	
+	/**
+	 * the board
+	 * This is the board.
+	 * 
+	 * @param field This is the char[][] array, where each position has its character. It can also be EMPTY which is '\u0000'
+	 * @param amountPieces The amount of amount of pieces.
+	 * @param lastPiece The piece that was moved last.
+	 */
 	private Board(char[][] field, int amountPieces, char lastPiece) {
 		this.field = field;
 		this.lastPiece = lastPiece;
 		this.amountPieces = amountPieces;
 	}
 
+	/**
+	 * Gets a copy of the board.
+	 */
 	public Board getCopy() {
 		char[][] fieldCopy = new char[3][3];
 		for (int y = 0; y < field.length; y++) {
@@ -33,8 +44,11 @@ public class Board {
 		return new Board(fieldCopy, amountPieces, lastPiece);
 	}
 	
+	/**
+	 * Get's the state and checks if a row/col is complete or 1000 rounds are surpassed.
+	 */
 	public State getState() {
-		if (roundsCount > 100) {
+		if (roundsCount > 1000) {
 		return State.DRAW;
 		}
 		if (isARowComplete() || isAColComplete()) {
@@ -52,14 +66,23 @@ public class Board {
 		return State.DRAW;
 	}
 
+	/**
+	 * Actually checks if a row is complete.
+	 */
 	private boolean isRowComplete(int y) {
 		return field[y][0] != EMPTY && field[y][0] == field[y][1] && field[y][0] == field[y][2];
 	}
-
+	
+	/**
+	 * Actually checks if a column is complete.
+	 */
 	private boolean isColComplete(int x) {
 		return field[0][x] != EMPTY && field[0][x] == field[1][x] && field[0][x] == field[2][x];
 	}
 
+	/**
+	 * Checks if a row is complete by using isRowComplete method.
+	 */
 	private boolean isARowComplete() {
 		for (int i = 0; i < 3; i++) {
 			if (isRowComplete(i)) {
@@ -69,6 +92,9 @@ public class Board {
 		return false;
 	}
 
+	/**
+	 * Checks if a column is complete by using isColComplete method.
+	 */
 	private boolean isAColComplete() {
 		for (int i = 0; i < 3; i++) {
 			if (isColComplete(i)) {
@@ -81,6 +107,13 @@ public class Board {
 	 * else { return State.DRAW; }
 	 */
 
+	/**
+	 * Sets a piece.
+	 * 
+	 * @param y y-position of piece.
+	 * @param x x-position of piece.
+	 * @param piece With which players character you want to set a piece with.
+	 */
 	public boolean setPiece(int y, int x, char piece) {
 		if (y < 3 && y > -1 && x < 3 && x > -1 && field[y][x] == EMPTY) {
 			field[y][x] = piece;
@@ -92,6 +125,13 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Moves a piece right.
+	 * 
+	 * @param y y-position of piece.
+	 * @param x x-position of piece.
+	 * @param piece With which players character you want to move a piece with.
+	 */
 	public boolean moveRight(int y, int x, char piece) {
 
 		if (y < 3 && y > -1 && x + 1 < 3 && x + 1 > -1 && isFieldEmpty(y, x + 1) && field[y][x] != lastPiece
@@ -106,6 +146,13 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Moves a piece up.
+	 * 
+	 * @param y y-position of piece.
+	 * @param x x-position of piece.
+	 * @param piece With which players character you want to move a piece with.
+	 */
 	public boolean moveUp(int y, int x, char piece) {
 		if (!isFieldEmpty(y - 1, x)) {
 			return false;
@@ -122,6 +169,13 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Moves a piece left.
+	 * 
+	 * @param y y-position of piece.
+	 * @param x x-position of piece.
+	 * @param piece With which players character you want to move a piece with.
+	 */
 	public boolean moveLeft(int y, int x, char piece) {
 		if (y < 3 && y > -1 && x - 1 < 3 && x - 1 > -1 && isFieldEmpty(y, x - 1) && field[y][x] != lastPiece
 				&& !isFieldEmpty(y, x)) {
@@ -135,6 +189,13 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Moves a piece down.
+	 * 
+	 * @param y y-position of piece.
+	 * @param x x-position of piece.
+	 * @param piece With which players character you want to move a piece with.
+	 */
 	public boolean moveDown(int y, int x, char piece) {
 
 		if (y + 1 < 3 && y + 1 > -1 && x < 3 && x > -1 && isFieldEmpty(y + 1, x) && field[y][x] != lastPiece
@@ -150,10 +211,16 @@ public class Board {
 
 	}
 
+	/**
+	 *Checks if a position is empty.
+	 */
 	public boolean isFieldEmpty(int y, int x) {
 		return field[y][x] == EMPTY;
 	}
 
+	/**
+	 *Checks if a direction is empty.
+	 */
 	public boolean isDirectionEmpty(int y, int x, char direction) {
 		if (y - 1 < 3 && y - 1 > -1 && x < 3 && x > -1 && direction == 'u') {
 			return isFieldEmpty(y - 1, x);
@@ -167,6 +234,9 @@ public class Board {
 		return false;
 	}
 
+	/**
+	 *Get a list with all available positions.
+	 */
 	public List<int[]> getAvailableFields() {
 		List<int[]> availableFields = new ArrayList<int[]>();
 		for (int y = 0; y < field.length; y++) {
@@ -180,6 +250,9 @@ public class Board {
 		return availableFields;
 	}
 
+	/**
+	 *Get a list with all available moves.
+	 */
 	public List<Move> getAvailableMoves(char piece) {
 		List<Move> availableMoves = new ArrayList<Move>();
 		for (int y = 0; y < field.length; y++) {
@@ -203,6 +276,9 @@ public class Board {
 		return availableMoves;
 	}
 
+	/**
+	 * Display the board.
+	 */
 	public void display() {
 		System.out.println(line);
 		for (int i = 0; i < 3; i++) {

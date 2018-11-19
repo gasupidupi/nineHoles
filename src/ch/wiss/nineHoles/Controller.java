@@ -1,6 +1,20 @@
 package ch.wiss.nineHoles;
 
+/**
+ * 9 Holes Spiel
+ * Dieses Spiel wurde nach Angaben der WISS als bewertetes Projekt erstellt.
+ *
+ * @author Schaffluetzel Gabriel
+ * @version 1.0
+ */
+
 public class Controller {
+	
+	/**
+	 * Controller class
+	 * This class initialises the players, starts the main board and checks who won.
+	 *
+	 */
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -10,20 +24,34 @@ public class Controller {
 				"  \\__, |   |  __  | | |  | | | |      |  __|    \\___ \\ \r\n" + 
 				"    / /    | |  | | | |__| | | |____  | |____   ____) |\r\n" + 
 				"   /_/     |_|  |_|  \\____/  |______| |______| |_____/ \r\n" + 
-				"";
-
+				"Version 1.0";
+		String firmenName = "Topomedics";
 
 		Board board = new Board();
 
+		/**
+		 * Initialisation of the AI.
+		 */
 		Player player1 = new AI(board, Board.PIECE_X);
-		Player player2 = new AI(board, Board.PIECE_O);
+		
+		/**
+		 * Initialisation of the Human.
+		 */
+		Player player2 = new Human(board, Board.PIECE_O);
 
+		/**
+		 * The first currentPlayer is player1, but the variable will change to player2 in the next round.
+		 */
 		Player currentPlayer = player1;
 		
-		System.out.print(logo);
+		System.out.println(logo);
+		System.out.println(firmenName);
 		
 		board.display();
 
+		/**
+		 * This is the controllers drop phase. It also changes currentPlayer.
+		 */
 		while (board.getState() == State.DROP) {
 			currentPlayer.nextDrop();
 			board.display();
@@ -36,6 +64,9 @@ public class Controller {
 			}
 		}
 		
+		/**
+		 * This is the controllers moving phase. It also changes currentPlayer.
+		 */
 		while (board.getState() == State.MOVE) {
 			currentPlayer.nextMove();
 			board.display();
@@ -46,12 +77,15 @@ public class Controller {
 			}
 		}
 		
+		/**
+		 * This is the controllers drop phase. It also changes currentPlayer.
+		 */
 		if(board.getState() == State.O_WON) {
 			System.out.println("Player O won.");
 		} else if(board.getState() == State.X_WON) {
 			System.out.println("Player X won.");
-		} else {
-			System.out.println("It's a draw.");
+		} else if(board.getState() == State.DRAW) {
+			System.out.println("1000 moves surpassed. It's a draw.");
 		}
 
 	}
