@@ -81,11 +81,11 @@ public class Controller {
 		 * This is the controllers drop phase. It also changes currentPlayer.
 		 */
 		if(board.getState() == State.O_WON) {
-			System.out.println("Player O won.");
+			System.out.println("Spieler O hat gewonnen.");
 		} else if(board.getState() == State.X_WON) {
-			System.out.println("Player X won.");
+			System.out.println("Spieler X hat gewonnen.");
 		} else if(board.getState() == State.DRAW) {
-			System.out.println("1000 moves surpassed. It's a draw.");
+			System.out.println("1000 Züge übertroffen. Es ist unentschieden.");
 		}
 
 	}
