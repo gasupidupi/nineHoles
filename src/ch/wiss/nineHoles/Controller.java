@@ -1,9 +1,20 @@
 package ch.wiss.nineHoles;
 
 /**
- * 9 Holes Spiel
+ * 9 Holes Spiel<br>
  * Dieses Spiel wurde nach Angaben der WISS als bewertetes Projekt erstellt.
- *
+ * <br>
+ * Externe Inspirationen:
+ * <ul>
+ * <li>AI Prinzip: 
+ * freecodecamp.org
+ * https://medium.freecodecamp.org/building-an-ai-algorithm-for-the-tic-tac-toe-challenge-29d4d5adee07
+ * </li>
+ * <li>
+ * Einige Umsetzungsideen:
+ * Peter Schafflützel
+ *</li>
+ *</ul>
  * @author Schaffluetzel Gabriel
  * @version 1.0
  */
@@ -30,7 +41,7 @@ public class Controller {
 				"  \\__, |   |  __  | | |  | | | |      |  __|    \\___ \\ \r\n" + 
 				"    / /    | |  | | | |__| | | |____  | |____   ____) |\r\n" + 
 				"   /_/     |_|  |_|  \\____/  |______| |______| |_____/ \r\n" + 
-				"Version 1.0";
+				"Version 7.2";
 		String firmenName = "Topomedics ©";
 
 		Board board = new Board();
