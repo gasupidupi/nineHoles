@@ -13,10 +13,16 @@ public class Controller {
 	/**
 	 * Controller class
 	 * This class initialises the players, starts the main board and checks who won.
+	 * @throws InterruptedException 
 	 *
 	 */
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+		
+		
+		while(true) {
+		
+		
 		// TODO Auto-generated method stub
 		String logo = "   ___      _    _    ____    _        ______    _____ \r\n" + 
 				"  / _ \\    | |  | |  / __ \\  | |      |  ____|  / ____|\r\n" + 
@@ -82,14 +88,17 @@ public class Controller {
 		 */
 		if(board.getState() == State.O_WON) {
 			System.out.println("Spieler O hat gewonnen.");
+			Thread.sleep(2000);
 		} else if(board.getState() == State.X_WON) {
 			System.out.println("Spieler X hat gewonnen.");
+			Thread.sleep(2000);
 		} else if(board.getState() == State.DRAW) {
 			System.out.println("1000 Züge übertroffen. Es ist unentschieden.");
+			Thread.sleep(2000);
 		}
 
 	}
 
 
-
+	}
 }
