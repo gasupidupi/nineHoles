@@ -70,18 +70,5 @@ class Tests {
     	assertEquals(AI.class, tester.getClass());
     }
     
-    @Test
-    public void isEmptyFieldEmpty() {
-    	Board tester = new Board();
-        tester.setPiece(2, 2, 'X');
-    	assertEquals(true, tester.isFieldEmpty(1, 1));
-    }
-    
-    @Test
-    public void isOccupiedFieldNotEmpty() {
-    	Board tester = new Board();
-        tester.setPiece(2, 2, 'X');
-    	assertEquals(false, tester.isFieldEmpty(2, 2));
-    }
     
 }
