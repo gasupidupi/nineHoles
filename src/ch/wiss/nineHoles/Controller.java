@@ -88,13 +88,13 @@ public class Controller {
 		 */
 		if(board.getState() == State.O_WON) {
 			System.out.println("Spieler O hat gewonnen.");
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		} else if(board.getState() == State.X_WON) {
 			System.out.println("Spieler X hat gewonnen.");
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		} else if(board.getState() == State.DRAW) {
 			System.out.println("1000 Züge übertroffen. Es ist unentschieden.");
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		}
 
 	}
