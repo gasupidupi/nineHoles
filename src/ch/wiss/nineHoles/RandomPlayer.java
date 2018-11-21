@@ -15,7 +15,7 @@ public class RandomPlayer extends Player {
 		// TODO Auto-generated constructor stub
 	}
 
-	// importiert
+	//---------------------------- importiert von Wenkebach
 	public static int randomNumberInRange(int min, int max) {
 		if (min >= max) {
 			throw new IllegalArgumentException("max must be greater than min");
@@ -23,12 +23,9 @@ public class RandomPlayer extends Player {
 		Random r = new Random();
 		return r.nextInt(max - min) + min;
 	}
+	//-----------------------------------------------------
 
 	public void nextDrop() {
-		/*
-		 * if (!board.setPiece(randomNumberInRange(0,3), randomNumberInRange(0,3),
-		 * piece)) { nextDrop(); }
-		 */
 		System.out.println(">> AI is picking a position.");
 		int randomFieldNumber = randomNumberInRange(0, board.getAvailableFields().size());
 		int[] randomField = board.getAvailableFields().get(randomFieldNumber);
