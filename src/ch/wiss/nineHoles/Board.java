@@ -59,11 +59,19 @@ public class Board {
 			}
 		} else if (amountPieces < 6) {
 			return State.DROP;
+		} else if (lockedUp('O')) {
+			return State.DRAW;
+		} else if (lockedUp('X')) {
+			return State.DRAW;
 		} else {
 			return State.MOVE;
 		}
 
 		return State.DRAW;
+	}
+
+	private boolean lockedUp(char c) {
+			return getAvailableMoves(c).isEmpty();
 	}
 
 	/**

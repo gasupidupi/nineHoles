@@ -25,17 +25,17 @@ public class Controller {
 				"    / /    | |  | | | |__| | | |____  | |____   ____) |\r\n" + 
 				"   /_/     |_|  |_|  \\____/  |______| |______| |_____/ \r\n" + 
 				"Version 1.0";
-		String firmenName = "Topomedics";
+		String firmenName = "Topomedics ©";
 
 		Board board = new Board();
 
 		/**
-		 * Initialisation of the AI.
+		 * Initialisation of the player 1.
 		 */
 		Player player1 = new AI(board, Board.PIECE_X);
 		
 		/**
-		 * Initialisation of the Human.
+		 * Initialisation of the player 2.
 		 */
 		Player player2 = new Human(board, Board.PIECE_O);
 
