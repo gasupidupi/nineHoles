@@ -54,7 +54,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="605.0">
                <children>
                   <Button alignment="CENTER" layoutX="271.0" layoutY="47.0" mnemonicParsing="false" onAction="#nextAction" prefHeight="25.0" prefWidth="63.0" text="Next" />
-                  <Label layoutX="165.0" layoutY="14.0" prefHeight="25.0" prefWidth="279.0" text="Label" />
+                  <Label fx:id="message" layoutX="165.0" layoutY="14.0" prefHeight="25.0" prefWidth="279.0" text="message" />
                </children>
             </AnchorPane>
         </items>

@@ -1,6 +1,6 @@
 package application;
 
-import application.view.Position;
+import application.view.Tile;
 
 public class Human extends Player {
 
@@ -25,17 +25,17 @@ public class Human extends Player {
 
 	@Override
 	public void nextDrop() {
-		if(Position.state == State.DROP && Position.currentplayer.piece == piece) {
+ 
 		
 		// TODO Auto-generated method stub
 		/**
 		 * This is the humans y drop position.
 		 */
-		int y = Position.y;
+		int y = Tile.getCurrentTyleY();
 		/**
 		 * This is the humans x drop position.
 		 */
-		int x = Position.x;
+		int x = Tile.getCurrentTyleX();
 		/**
 		 * If the human places his pieces on an illegal spot, it will hinder the drop, display an error message and redo the method.
 		 */
@@ -44,7 +44,7 @@ public class Human extends Player {
 			nextDrop();
 		}
 		}
-	}
+	
 
 	// Maybe move code-segment to Player
 	public void nextMove(String direction) {
@@ -52,11 +52,11 @@ public class Human extends Player {
 		/**
 		 * This is the humans y move position.
 		 */
-		y = Position.y;
+		int y = Tile.getCurrentTyleY();
 		/**
 		 * This is the humans x move position.
 		 */
-		x = Position.x;
+		int x = Tile.getCurrentTyleX();
 		
 		/**
 		 * This switch checks the input and moves in that direction.

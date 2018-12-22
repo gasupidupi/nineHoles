@@ -46,13 +46,13 @@ public class MainViewController {
 	
 	private Stage primaryStage;
 	
-	Board board = new Board();
+	static Board board = new Board();
 	
 
 
 
 		Player player1 = new AI(board, Board.PIECE_X);
-		Player player2 = new Human(board, Board.PIECE_O);
+		Player player2 = new AI(board, Board.PIECE_O);
 		Player currentPlayer = player1;
 
 		
@@ -156,7 +156,7 @@ public class MainViewController {
 	                Tile tile = new Tile(y, x);
 	                GridPane.setConstraints(tile.getPane(), y, x);
 	                boardTable.getChildren().add(tile.getPane());
-	                Position.state = board.getState();
+
 	       
 			}
 		}
