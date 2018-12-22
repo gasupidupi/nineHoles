@@ -57,7 +57,7 @@ public class MainViewController {
 
 
 		Player player1 = new AI(board, Board.PIECE_X);
-		Player player2 = new RandomPlayer(board, Board.PIECE_O);
+		Player player2 = new Human(board, Board.PIECE_O);
 		Player currentPlayer = player1;
 
 		private MainViewController mainViewController;
@@ -149,14 +149,17 @@ public class MainViewController {
 	    return result;
 	}
 	
-	public void onTileClicked() {
+	public void onTileClicked(int x, int y) {
 		clickCounter++;
-		if(clickCounter<2) {
+		if(clickCounter==1) {
 		loadData();
 		clickCounter = 0;
 		}
+		
+//		if(currentPlayer == Human && )
 	}
 	
+
 	public void loadData() {
 		
 //		board.setPiece(1, 1, board.PIECE_X);
@@ -180,8 +183,8 @@ public class MainViewController {
 
 	                Tile tile = new Tile(y, x);
 	                tile.setOnClickHandler((e -> {
-	                	onTileClicked();
-
+	                	onTileClicked(e.x, e.y);
+	                	
 	                }));
 	                GridPane.setConstraints(tile.getPane(), y, x);
 	                boardTable.getChildren().add(tile.getPane());

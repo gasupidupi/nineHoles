@@ -2,9 +2,11 @@ package application.view;
 
 import application.Main;
 import application.State;
+import application.view.Tile.ClickEvent;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -19,7 +21,7 @@ public class Tile {
     int positionX;
     int positionY;
     private Pane pane;
-	private EventHandler<ActionEvent> clickHandler;
+	private EventHandler<ClickEvent> clickHandler;
     static int currentTileX;
     static int currentTileY;
     static boolean currentClick;
@@ -37,20 +39,15 @@ public class Tile {
                     
                     
                     if(MainViewController.board.getState()==State.MOVE) {
-                    	
-                    }
 
-                    if(currentClick == true) {
-                    	pane.setBackground(new Background(new BackgroundFill(Color.web("#48d1cc"), CornerRadii.EMPTY, Insets.EMPTY)));
-                        pane.setOpacity(0.5);
-
-                    } else if(currentClick == false) {
-                    	pane.setBackground(new Background(new BackgroundFill(Color.web("#ccd148"), CornerRadii.EMPTY, Insets.EMPTY)));
+                        pane.setBackground(new Background(new BackgroundFill(Color.web("#48d1cc"), CornerRadii.EMPTY, Insets.EMPTY)));
                         pane.setOpacity(0.5);
                     }
 
-                    
-                    pane.setOpacity(0.5);
+
+
+
+
                     
                     setCurrentTileX(x);
                     setCurrentTileY(y);
@@ -60,6 +57,17 @@ public class Tile {
         );
     }
     
+    
+    public static class ClickEvent extends Event {
+		private static final long serialVersionUID = 1L;
+		int x;
+    	int y;
+    	ClickEvent(int x, int y) {
+    		super(null);
+    		this.x = x;
+    		this.y = y;
+    	}
+    }
 
 	private void setCurrentTileY(int y) {
 		currentTileY = y;
@@ -73,12 +81,12 @@ public class Tile {
 	}
 
 
-	public void setOnClickHandler(EventHandler<ActionEvent> handler) {
+	public void setOnClickHandler(EventHandler<ClickEvent> handler) {
 		this.clickHandler = handler;
 	}
 	
 	private void fireClick() {
-		clickHandler.handle(new ActionEvent());
+		clickHandler.handle(new ClickEvent(this.positionX, this.positionY));
 	}
 	
 	public Node getPane() {
