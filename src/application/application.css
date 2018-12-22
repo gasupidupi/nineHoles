@@ -1,0 +1,15 @@
+.grid-pane {
+    -fx-background-color: lightgray;
+    -fx-vgap: 1;
+    -fx-hgap: 1;
+    -fx-padding: 50 50 50 70;
+
+}
+
+.borders {
+	-fx-border-style: solid inside; 
+    -fx-border-width: 2;
+    -fx-border-insets: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: blue;
+}
