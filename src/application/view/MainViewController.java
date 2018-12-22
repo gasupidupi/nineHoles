@@ -8,6 +8,7 @@ import application.AI;
 import application.Board;
 import application.Human;
 import application.Player;
+import application.RandomPlayer;
 import application.State;
 import application.model.PieceModel;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,20 +44,29 @@ public class MainViewController {
 	private Label message;
 	
 	@FXML
+	private Button next;
+	
+	@FXML
 	private GridPane boardTable;
 	
 	private Stage primaryStage;
 	
 	static Board board = new Board();
 	
-
+    int clickCounter = 0;
 
 
 		Player player1 = new AI(board, Board.PIECE_X);
-		Player player2 = new AI(board, Board.PIECE_O);
+		Player player2 = new RandomPlayer(board, Board.PIECE_O);
 		Player currentPlayer = player1;
 
+		private MainViewController mainViewController;
+
 		
+
+	public void setMainViewController(MainViewController mainViewController) {
+		this.mainViewController = mainViewController;
+	}
 	
 	
 	@FXML
@@ -138,10 +149,24 @@ public class MainViewController {
 	    return result;
 	}
 	
+	public void onTileClicked() {
+		clickCounter++;
+		if(clickCounter<2) {
+		loadData();
+		clickCounter = 0;
+		}
+	}
+	
 	public void loadData() {
 		
 //		board.setPiece(1, 1, board.PIECE_X);
 		clearData();
+		
+		if(currentPlayer instanceof Human) {
+			next.disarm();
+		} else {
+			next.arm();
+		}
 		
 		for (int y = 0; y < board.field.length; y++) {
 			for (int x = 0; x < board.field[y].length; x++) {
@@ -154,9 +179,14 @@ public class MainViewController {
 					boardTable.add(label, x, y);
 
 	                Tile tile = new Tile(y, x);
+	                tile.setOnClickHandler((e -> {
+	                	onTileClicked();
+
+	                }));
 	                GridPane.setConstraints(tile.getPane(), y, x);
 	                boardTable.getChildren().add(tile.getPane());
-
+	                
+	                
 	       
 			}
 		}
@@ -174,6 +204,5 @@ public class MainViewController {
 	}
 
 
-	
 
 }

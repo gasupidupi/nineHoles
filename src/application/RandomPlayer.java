@@ -10,7 +10,7 @@ public class RandomPlayer extends Player {
 	 * RandomPlayer Class
 	 * This class extends the player class and uses randomness to place pieces.
 	 */
-	RandomPlayer(Board board, char piece) {
+	public RandomPlayer(Board board, char piece) {
 		super(board, piece);
 		// TODO Auto-generated constructor stub
 	}
